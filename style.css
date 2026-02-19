@@ -1,0 +1,366 @@
+/* Reset basic styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    color: var(--fg);
+    transition: background 0.5s ease, color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Light mode (default) */
+:root {
+    --fg: #2c3e50;
+    --accent: #ffffff;
+    
+    /* Focus session - blue gradient */
+    --focus-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --focus-dark: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    /* Break session - green gradient */
+    --break-light: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --break-dark: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    
+    /* Long break - orange gradient */
+    --longbreak-light: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    --longbreak-dark: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+body.light {
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+body.dark {
+    --bg-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    --fg: #e0e0e0;
+}
+
+/* Dynamic backgrounds based on session type */
+body.focus-session {
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body.break-session {
+    --bg-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+body.longbreak-session {
+    --bg-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    color: var(--accent);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.mode-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--accent);
+}
+
+.mode-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(20deg);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.timer-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.circular-progress {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-progress svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 8;
+}
+
+.progress-fill {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 565;
+    stroke-dashoffset: 565;
+    transition: stroke-dashoffset 0.5s linear;
+}
+
+.timer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.session-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+}
+
+.timer-display {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
+}
+
+.session-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+.controls {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #667eea;
+    flex: 1;
+    min-width: 150px;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--accent);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.stats-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timer-container {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .mode-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .timer-display {
+        font-size: 3.5rem;
+    }
+
+    .circular-progress {
+        width: 220px;
+        height: 220px;
+    }
+
+    .progress-bg,
+    .progress-fill {
+        stroke-width: 6;
+    }
+
+    .session-label {
+        font-size: 0.8rem;
+    }
+
+    .session-subtitle {
+        font-size: 0.75rem;
+    }
+
+    .controls {
+        gap: 0.6rem;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        font-size: 0.8rem;
+    }
+
+    .btn-primary {
+        min-width: 120px;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 1rem;
+    }
+
+    header {
+        margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    .timer-display {
+        font-size: 2.8rem;
+    }
+
+    .circular-progress {
+        width: 180px;
+        height: 180px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="focus-session">
+    <div class="container">
+        <header>
+            <h1>Pomocus</h1>
+        </header>
+        <main>
+            <div class="timer-container">
+                <div class="circular-progress" id="circular-progress">
+                    <svg viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="90" class="progress-bg"></circle>
+                        <circle cx="100" cy="100" r="90" class="progress-fill" id="progress-circle"></circle>
+                    </svg>
+                    <div class="timer-content">
+                        <div class="session-label" id="session-label">Focus</div>
+                        <div class="timer-display" id="timer-display">25:00</div>
+                        <div class="session-subtitle" id="session-subtitle">#1 Time to focus!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="start-btn" class="btn btn-primary" aria-label="Start timer">
+                    <span>START</span>
+                </button>
+                <button id="pause-btn" class="btn btn-secondary" aria-label="Pause timer" disabled>
+                    <span>PAUSE</span>
+                </button>
+                <button id="reset-btn" class="btn btn-secondary" aria-label="Reset timer">
+                    <span>RESET</span>
+                </button>
+                <button id="skip-btn" class="btn btn-secondary" aria-label="Skip to next session">
+                    <span>SKIP</span>
+                </button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-label">Completed Sessions</span>
+                    <span class="stat-value" id="completed-count">0</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
